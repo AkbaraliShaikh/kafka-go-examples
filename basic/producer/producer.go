@@ -8,14 +8,13 @@ import (
 )
 
 var (
-	Topic_Name               string = "first-topic"
-	Bootstrap_Servers_Config string = "bootstrap.servers"
-	Server_Address           string = "localhost"
+	Topic_Name     string = "first-topic"
+	Server_Address string = "localhost"
 )
 
 func main() {
 	pro, err := kafka.NewProducer(&kafka.ConfigMap{
-		Bootstrap_Servers_Config: Server_Address,
+		"bootstrap.servers": Server_Address,
 	})
 	if err != nil {
 		log.Fatal(err)
