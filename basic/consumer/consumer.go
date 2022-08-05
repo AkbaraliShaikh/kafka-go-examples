@@ -32,7 +32,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		fmt.Println("Message on %s : %s", msg.TopicPartition, string(msg.Value))
+		fmt.Printf("Message on %s : %s\n", msg.TopicPartition, string(msg.Value))
 	}
 
 	con.Close()
