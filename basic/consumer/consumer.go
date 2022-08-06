@@ -37,3 +37,7 @@ func main() {
 
 	con.Close()
 }
+
+// output
+// $ go run consumer.go
+// Message on first-topic[0]@18 : Hello World!

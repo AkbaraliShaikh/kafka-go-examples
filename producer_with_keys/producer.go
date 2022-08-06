@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -21,11 +22,16 @@ func main() {
 	}
 
 	for i := 0; i < 10; i++ {
+		key := fmt.Sprintf("Key-%d", i)
+		fmt.Printf("producer with key = %s\n", key)
 		err = pro.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{
 				Topic:     &Topic_Name,
 				Partition: kafka.PartitionAny,
 			},
+
+			Key: []byte(key),
+
 			Value: []byte("Hello World!"),
 		}, nil)
 		if err != nil {
@@ -35,3 +41,16 @@ func main() {
 
 	pro.Flush(int(time.Second) / int(time.Millisecond))
 }
+
+// output
+// $ go run producer.go
+// producer with key = Key-0
+// producer with key = Key-1
+// producer with key = Key-2
+// producer with key = Key-3
+// producer with key = Key-4
+// producer with key = Key-5
+// producer with key = Key-6
+// producer with key = Key-7
+// producer with key = Key-8
+// producer with key = Key-9
